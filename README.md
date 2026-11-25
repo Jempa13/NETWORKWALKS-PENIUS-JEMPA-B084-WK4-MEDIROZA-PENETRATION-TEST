@@ -126,7 +126,7 @@ All three patient pathology report PDFs were unlocked during testing using the N
 - **Third PDF (`patient_report_3` — Emily Thompson, Patient ID `MG-P-10255`, DOB `1978-09-03`, Lab Ref `LR-2024-1205`, Referring Dr. Ahmed Kara):** Initially resisted `rockyou.txt` and the built-in wordlist because its password (`!@#$%^&`) consists strictly of 7 special symbols rather than dictionary words. The PDF uses Revision 3 (128-bit) encryption, which derives keys through MD5 + RC4; testing symbol/character combinations (`!@#$%^&`) matched the hash and unlocked Emily Thompson's report.
 
 **patient_1:**
-![patient1](Screenshot -patient1-password.png)
+![patient1](Screenshot-patient1-password.png)
 ![patient1](Screenshot-patient-1.png)
 
 
@@ -156,4 +156,4 @@ All three patient pathology report PDFs were unlocked during testing using the N
 - **Use Parameterized Queries & Secure Password Hashing:** Replace dynamic SQL string concatenation on the login form with prepared statements, and verify hashed passwords (such as `bcrypt` or `Argon2`) in application code.
 - **Remove Exposed Backups & Restrict Access:** Remove `mediroza_db_backup_2019.sql` from public or unauthorized locations, store backups securely with access controls and encryption, and rotate exposed credentials.
 - **Upgrade Document Encryption & Access Controls:** Move away from weak/common passwords (`123456`, `password`) and predictable symbol sequences (`!@#$%^&`), upgrade PDF encryption beyond legacy R3 (MD5/RC4), and enforce proper per-user access controls and backup audit hygiene.
-```[cite: 13, 14, 15, 16, 17, 18, 19, 20]
+
