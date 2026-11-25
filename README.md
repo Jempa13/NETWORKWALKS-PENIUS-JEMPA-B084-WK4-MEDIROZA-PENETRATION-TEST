@@ -49,9 +49,7 @@ For the three encrypted pathology PDFs, two report passwords (`123456` for `pati
 
 Entering `admin'--` in the Username field with a placeholder password (such as `test`) bypassed authentication and logged into the Patient Portal (`medirozahospital.com/patient/portal.php`), displaying the `My lab reports` page with downloadable encrypted pathology PDFs for `S. Dlamini` (`LR-2024-1187`), `P. Reddy` (`LR-2024-1192`), and `E. Thompson` (`LR-2024-1205`). This occurs when user input is concatenated directly into a SQL query, allowing `--` to comment out the remaining password condition.
 
-**Screenshot Placeholders:**
-- `Evidence/M1_SQLi_Authentication_Bypass/01_patient_portal_login.png`
-- `Evidence/M1_SQLi_Authentication_Bypass/02_my_lab_reports_dashboard.png`
+  ![gained access](Screenshot-loginsuccess.png)
 
 ---
 
@@ -63,9 +61,9 @@ Inspecting `mediroza_db_backup_2019.sql` exposed unencrypted `INSERT` statements
 - **Shareholders Table (10 records):** Includes `shareholder_name`, `share_percent`, `shares_held` (`1,000,000` total shares), and `share_class` (`Ordinary` and `Preferential`).
 - **Data Anomalies:** Several staff records list `date_joined` values in late 2019 and early 2020 (such as `2019-09-02`, `2019-11-05`, and `2020-02-10`) despite the file's `2019-08-27` backup header.
 
-**Screenshot Placeholders:**
-- `Evidence/M3_Database_Backup_Exposure/01_mediroza_sql_backup_staff_dump.png`
-- `Evidence/M3_Database_Backup_Exposure/02_mediroza_sql_backup_shareholders_dump.png`
+
+![staff info](Screenshot-staff.png)
+![shareholder info](Screenshot-Share-holders.png)
 
 #### Shareholder Records (`mediroza_hr.shareholders`)
 
@@ -127,10 +125,18 @@ All three patient pathology report PDFs were unlocked during testing using the N
 - **Second PDF (`patient_report_2` — Priya Reddy, Patient ID `MG-P-10244`, Lab Ref `LR-2024-1192`):** Cracked with password `password`.
 - **Third PDF (`patient_report_3` — Emily Thompson, Patient ID `MG-P-10255`, DOB `1978-09-03`, Lab Ref `LR-2024-1205`, Referring Dr. Ahmed Kara):** Initially resisted `rockyou.txt` and the built-in wordlist because its password (`!@#$%^&`) consists strictly of 7 special symbols rather than dictionary words. The PDF uses Revision 3 (128-bit) encryption, which derives keys through MD5 + RC4; testing symbol/character combinations (`!@#$%^&`) matched the hash and unlocked Emily Thompson's report.
 
-**Screenshot Placeholders:**
-- `Evidence/M2_PDF_Hash_Extraction_and_Cracking/01_patient_report_1_cracked_and_report.png`
-- `Evidence/M2_PDF_Hash_Extraction_and_Cracking/02_patient_report_2_cracked_and_report.png`
-- `Evidence/M2_PDF_Hash_Extraction_and_Cracking/03_patient_report_3_cracked_and_report.png`
+**patient_1:**
+![patient1](Screenshot -patient1-password.png)
+![patient1](Screenshot-patient-1.png)
+
+
+**patient_2:**
+![patient1](Screenshot-patient2-password.png)
+![patient1](Screenshot-patient-2.png)
+
+**patient_3:**
+![patient1](Screenshot-patient3-password.png)
+![patient1](Screenshot-patient-3.png)
 
 ---
 
